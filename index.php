@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!-- Template by Quackit.com -->
-<html lang="en">
+<html <?php language_attributes( );?>>
 <head>
-    <meta charset="utf-8">
+    <meta charset="<?php bloginfo('charset');?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -10,18 +10,13 @@
     <title>Corporate 2</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo get_template_directory_uri(); ?>/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
-    <link href="custom.css" rel="stylesheet">
+    <link href="<?php echo get_template_directory_uri(); ?>/style.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
+<?php wp_head(  );?>
 </head>
 
 <body>
@@ -41,25 +36,15 @@
             </div>
             <!-- Navbar links -->
             <div class="collapse navbar-collapse" id="navbar">
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="#">Home</a>
-                    </li>
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Products</a>
-                    </li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
-						<ul class="dropdown-menu" aria-labelledby="about-us">
-							<li><a href="#">Engage</a></li>
-							<li><a href="#">Pontificate</a></li>
-							<li><a href="#">Synergize</a></li>
-						</ul>
-					</li>
-                </ul>
+                <?php
+                wp_nav_menu( [
+                    'location'  =>'hm',
+                    'container' =>' ',
+                    'menu_class'=>'nav navbar-nav',
+                    'menu_id'   =>' '
+                ] )
+                ?>
+               
 
 				<!-- Search -->
 				<form class="navbar-form navbar-right" role="search">
@@ -132,34 +117,19 @@
 
         <!-- Feature Row -->
         <div class="row">
-            <article class="col-md-4 article-intro">
+            <!-- <article class="col-md-4 article-intro"> -->
+                <?php while(have_posts(  )): the_post(  );?>
                 <a href="#">
-                    <img class="img-responsive img-rounded" src="holder.js/700x300" alt="">
+                    <?php the_post_thumbnail(); ?>
                 </a>
                 <h3>
-                    <a href="#">Efficiently Unleash</a>
+                    <a href="#"><?php the_title(  );?></a>
                 </h3>
-                <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
+                <p>[By:<?php the_author( );?> | <?php the_time( 'M d Y' );?> <?php the_time( 'g:i:a' );?></p>
+                <p><?php the_content(  );?></p>
+           <?php endwhile;?>
             </article>
-            <article class="col-md-4 article-intro">
-                <a href="#">
-                    <img class="img-responsive img-rounded" src="holder.js/700x300" alt="">
-                </a>
-                <h3>
-                    <a href="#">Completely Synergize</a>
-                </h3>
-                <p>Dramatically maintain clicks-and-mortar solutions without functional solutions. Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.</p>
-            </article>
-
-            <article class="col-md-4 article-intro">
-                <a href="#">
-                    <img class="img-responsive img-rounded" src="holder.js/700x300" alt="">
-                </a>
-                <h3>
-                    <a href="#">Dynamically Procrastinate</a>
-                </h3>
-                <p>Professionally cultivate one-to-one customer service with robust ideas. Completely synergize resource taxing relationships via premier niche markets. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
-            </article>
+           
         </div>
         <!-- /.row -->
 
@@ -170,24 +140,14 @@
 		<div class="footer-blurb">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-4 footer-blurb-item">
-						<img class="img-circle" src="holder.js/100x100" alt="" width="100" height="100">
-						<h3>Dynamically Procrastinate</h3>
-						<p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
+                    <?php while( have_posts(  )): the_post(  );?>
+					<!-- <div class="col-sm-4 footer-blurb-item"> -->
+                    <?php the_post_thumbnail(  );?>
+						<h3><?php the_title( );?></h3>
+						<p><?php the_content( )?></p>
 						<p><a class="btn btn-default" href="#">Procrastinate</a></p>
 					</div>
-					<div class="col-sm-4 footer-blurb-item">
-						<img class="img-circle" src="holder.js/100x100" alt="" width="100" height="100">
-						<h3>Efficiently Unleash</h3>
-						<p>Dramatically maintain clicks-and-mortar solutions without functional solutions. Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. </p>
-						<p><a class="btn btn-default" href="#">Unleash</a></p>
-					</div>
-					<div class="col-sm-4 footer-blurb-item">
-						<img class="img-circle" src="holder.js/100x100" alt="" width="100" height="100">
-						<h3>Completely Synergize</h3>
-						<p>Professionally cultivate one-to-one customer service with robust ideas. Completely synergize resource taxing relationships via premier niche markets. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
-						<p><a class="btn btn-default" href="#">Synergize</a></p>
-					</div>
+					<?php endwhile;?>
 
 				</div>
 				<!-- /.row -->	
@@ -204,17 +164,23 @@
 
 	
     <!-- jQuery -->
-    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="<?php echo get_template_directory_uri(); ?>/js/jquery-1.11.3.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="<?php echo get_template_directory_uri(); ?>/js/bootstrap.min.js"></script>
 	
 	<!-- IE10 viewport bug workaround -->
-	<script src="js/ie10-viewport-bug-workaround.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/js/ie10-viewport-bug-workaround.js"></script>
 	
 	<!-- Placeholder Images -->
-	<script src="js/holder.min.js"></script>
-	
+	<script src="<?php echo get_template_directory_uri(); ?>/js/holder.min.js"></script>
+
+    <div class="notic">
+        <h2>All Notic</h2>
+       <p>woedpress</p>
+       <p>php</p>
+    </div>
+	<?php wp_footer(  );?>
 </body>
 
 </html>
